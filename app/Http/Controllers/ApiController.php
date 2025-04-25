@@ -45,4 +45,16 @@ class ApiController extends Controller
             return $this->getProductsFromApi();
         }
     }
+
+    public function showProduct($id)
+    {
+        $response = Http::get("https://fakestoreapi.com/products/{$id}");
+
+        if ($response->successful()) {
+            $product = $response->json();
+            return view('api.show', compact('product'));
+        } else {
+            return view('api.error', ['message' => 'Gagal mengambil detail produk dari API. Status: ' . $response->status()]);
+        }
+    }
 }
