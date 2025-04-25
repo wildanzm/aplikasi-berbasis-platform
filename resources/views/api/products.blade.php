@@ -5,21 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produk dari API</title>
+    <style>
+        .product-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .product-item {
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-image {
+            margin-right: 15px;
+        }
+
+        .product-details {
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            color: green;
+            font-weight: bold;
+        }
+
+        .product-description {
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Daftar Produk dari API</h1>
 
     @if (isset($products) && count($products) > 0)
-        <ul>
+        <ul class="product-list">
             @foreach ($products as $product)
-                <li>
-                    {{ $product['title'] }} - Harga: ${{ $product['price'] }}
-                    <br>
-                    <img src="{{ $product['image'] }}" alt="{{ $product['title'] }}" width="100">
-                    <p>{{ Str::limit($product['description'], 100) }}</p>
+                <li class="product-item">
+                    <div class="product-image">
+                        <img src="{{ $product['image'] }}" alt="{{ $product['title'] }}" width="100">
+                    </div>
+                    <div class="product-details">
+                        <h2 class="product-title">{{ $product['title'] }}</h2>
+                        <p class="product-price">Harga: ${{ number_format($product['price'], 2) }}</p>
+                        <p class="product-description">{{ Str::limit($product['description'], 150) }}</p>
+                        <p>Kategori: {{ $product['category'] }}</p>
+                    </div>
                 </li>
-                <hr>
             @endforeach
         </ul>
     @else
