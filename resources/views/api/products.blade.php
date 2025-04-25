@@ -48,6 +48,16 @@
 <body>
     <h1>Daftar Produk dari API</h1>
 
+    <form action="{{ route('api.products.search') }}" method="GET" style="margin-bottom: 20px;">
+        <input type="text" name="keyword" placeholder="Cari produk..." value="{{ request('keyword') }}">
+        <button type="submit">Cari</button>
+    </form>
+
+    @if (isset($keyword))
+        <p>Hasil pencarian untuk: <strong>{{ $keyword }}</strong></p>
+    @endif
+
+
     @if (isset($products) && count($products) > 0)
         <ul class="product-list">
             @foreach ($products as $product)
@@ -65,7 +75,13 @@
             @endforeach
         </ul>
     @else
-        <p>Tidak ada produk yang diterima dari API.</p>
+        <p>
+            @if (isset($keyword))
+                Tidak ada produk yang ditemukan untuk kata kunci "{{ $keyword }}".
+            @else
+                Tidak ada produk yang diterima dari API.
+            @endif
+        </p>
     @endif
 
     <p><a href="{{ route('products.index') }}">Kembali ke Daftar Produk Lokal</a></p>
