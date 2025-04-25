@@ -48,6 +48,10 @@
 <body>
     <h1>Daftar Produk dari API</h1>
 
+    @php
+        dd($products); // Tambahkan baris ini
+    @endphp
+
     <form action="{{ route('api.products.search') }}" method="GET" style="margin-bottom: 20px;">
         <input type="text" name="keyword" placeholder="Cari produk..." value="{{ request('keyword') }}">
         <button type="submit">Cari</button>
