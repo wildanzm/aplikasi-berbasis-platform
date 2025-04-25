@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Product;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,3 +15,9 @@ Route::get('/produk', function () {
     dump($produk1); // Menampilkan informasi object $produk1
     dump($produk2); // Menampilkan informasi object $produk2
 });
+
+// Rute untuk menampilkan daftar produk
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+// Rute untuk menampilkan detail produk dengan parameter 'id'
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
