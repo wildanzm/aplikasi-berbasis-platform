@@ -25,3 +25,5 @@ Route::get('/products/{id}', [ProductController::class, 'show'])->name('products
 
 // Rute untuk mengambil dan menampilkan produk dari API
 Route::get('/api/products', [ApiController::class, 'getProductsFromApi'])->name('api.products');
+
+Route::get('/api/products/search', [ApiController::class, 'searchProducts'])->name('api.products.search');
