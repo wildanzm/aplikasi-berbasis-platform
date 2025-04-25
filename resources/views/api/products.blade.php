@@ -66,7 +66,11 @@
                         <img src="{{ $product['image'] }}" alt="{{ $product['title'] }}" width="100">
                     </div>
                     <div class="product-details">
-                        <h2 class="product-title">{{ $product['title'] }}</h2>
+                        <h2 class="product-title">
+                            <a href="{{ route('api.products.show', ['id' => $product['id']]) }}">
+                                {{ $product['title'] }}
+                            </a>
+                        </h2>
                         <p class="product-price">Harga: ${{ number_format($product['price'], 2) }}</p>
                         <p class="product-description">{{ Str::limit($product['description'], 150) }}</p>
                         <p>Kategori: {{ $product['category'] }}</p>
