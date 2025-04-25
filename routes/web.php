@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Product;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ApiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,3 +22,6 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 
 // Rute untuk menampilkan detail produk dengan parameter 'id'
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+
+// Rute untuk mengambil dan menampilkan produk dari API
+Route::get('/api/products', [ApiController::class, 'getProductsFromApi'])->name('api.products');
